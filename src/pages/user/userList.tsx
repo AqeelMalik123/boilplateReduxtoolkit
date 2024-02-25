@@ -9,9 +9,9 @@ export default function UserList() {
     useEffect(() => {
       dispatch(getClaimId())
     }, [])
-    useEffect(() => {
-      dispatch(userGet("mojombo"))
-    }, [])
+    // useEffect(() => {
+    //   dispatch(userGet("mojombo"))
+    // }, [])
     
   return (
     <div>

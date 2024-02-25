@@ -7,13 +7,15 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import { useDispatch, useSelector } from '../../store';
-import { modalFuc } from '../../slices/claims';
+import { modalFuc, userGet } from '../../slices/claims';
+import { Avatar, Divider, List, ListItem, ListItemAvatar, ListItemText, Typography } from '@mui/material';
 // import { modalFuc } from '../../slices/claims';
 // import { modalFuc } from '../../slices/claims';
 
 export default function FormDialog() {
   // const [open, setOpen] = React.useState(false);
-  const {modalToggle}=useSelector((state)=>state.claims)
+  const {modalToggle,userData}=useSelector((state)=>state.claims)
+  console.log(userData?.login,"userData")
 const dispatch=useDispatch()
   const handleClickOpen = () => {
     // setOpen(true);
@@ -27,6 +29,9 @@ const dispatch=useDispatch()
     dispatch(modalFuc(false))
 
   };
+React.useEffect(() => {
+
+}, [userData])
 
   return (
     <React.Fragment>
@@ -36,35 +41,55 @@ const dispatch=useDispatch()
       <Dialog
         open={modalToggle}
         onClose={handleClose}
-        PaperProps={{
-          component: 'form',
-          onSubmit: (event: React.FormEvent<HTMLFormElement>) => {
-            event.preventDefault();
-            const formData = new FormData(event.currentTarget);
-            const formJson = Object.fromEntries((formData as any).entries());
-            const email = formJson.email;
-            console.log(email);
-            handleClose();
-          },
-        }}
+        // PaperProps={{
+        //   component: 'form',
+        //   onSubmit: (event: React.FormEvent<HTMLFormElement>) => {
+        //     event.preventDefault();
+        //     const formData = new FormData(event.currentTarget);
+        //     const formJson = Object.fromEntries((formData as any).entries());
+        //     const email = formJson.email;
+        //     console.log(email);
+        //     handleClose();
+        //   },
+        // }}
       >
         <DialogTitle>Subscribe</DialogTitle>
         <DialogContent>
-          <DialogContentText>
-            To subscribe to this website, please enter your email address here. We
-            will send updates occasionally.
-          </DialogContentText>
-          <TextField
-            autoFocus
-            required
-            margin="dense"
-            id="name"
-            name="email"
-            label="Email Address"
-            type="email"
-            fullWidth
-            variant="standard"
-          />
+        <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
+        
+            
+            
+            
+      <ListItem alignItems="flex-start" onClick={()=>{
+        //  dispatch(modalFuc(true))
+        //  dispatch(userGet(item?.login))
+      }}>
+        <ListItemAvatar>
+          <Avatar alt="Remy Sharp" src={userData?.avatar_url} />
+        </ListItemAvatar>
+        <ListItemText
+          primary=  {userData?.login}
+          secondary={
+            <React.Fragment>
+              <Typography
+                sx={{ display: 'inline' }}
+                component="span"
+                variant="body2"
+                color="text.primary"
+              >
+              {`Followers ${userData?.followers}`}
+              </Typography>
+           
+            </React.Fragment>
+          }
+        />
+<Typography>{userData?.location}</Typography>
+<Typography>Dsda</Typography>
+<Typography>Dsda</Typography>
+      </ListItem>
+      <Divider variant="inset" component="li" />
+       
+    </List>
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>Cancel</Button>
