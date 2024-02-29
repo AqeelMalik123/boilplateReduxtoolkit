@@ -7,7 +7,7 @@ import DialogContent from '@mui/material/DialogContent';
 // import DialogContentText from '@mui/material/DialogContentText';
 // import DialogTitle from '@mui/material/DialogTitle';
 import { useDispatch, useSelector } from '../../store';
-import { modalFuc, userGet } from '../../slices/claims';
+import { modalFuc, userGet } from '../../slices/users';
 // import { Avatar, Divider, List, ListItem, ListItemAvatar, ListItemText, Typography } from '@mui/material';
 import UserListItem from '../table/table';
 // import { modalFuc } from '../../slices/claims';

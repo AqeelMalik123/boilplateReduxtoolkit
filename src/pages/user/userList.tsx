@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import AlignItemsList from '../../component/listItem/listitem'
 import { useDispatch } from '../../store'
-import { getClaimId, userGet } from '../../slices/claims'
+import {  userGet, userlist } from '../../slices/users'
 import FormDialog from '../../component/modal/modal'
 import BasicTable from '../../component/table/table'
 import { Box } from '@mui/material'
@@ -10,7 +10,7 @@ import { Box } from '@mui/material'
 export default function UserList() {
     const dispatch=useDispatch()
     useEffect(() => {
-      dispatch(getClaimId())
+      dispatch(userlist())
     }, [])
     // useEffect(() => {
     //   dispatch(userGet("mojombo"))

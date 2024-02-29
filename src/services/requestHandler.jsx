@@ -3,7 +3,7 @@ import featureConstants from './features-constants';
 
 const SERVICE_URLS = {
   // claimsList: 'claim/getclaimlistcompactudt',
-  claimId: 'users',
+  userlist: 'users',
   username:"users/"
 };
 const userGet = (data) =>
@@ -14,15 +14,15 @@ const userGet = (data) =>
   );
 // const getClaimsList = (data) =>
 //   post(SERVICE_URLS.claimsList, data, { feature: featureConstants.static });
-const getclaimId = () =>
+const userlist = () =>
   get(
-    SERVICE_URLS.claimId ,
+    SERVICE_URLS.userlist ,
     {},
     { feature: featureConstants.static },
   );
 const apiServices = {
   // getClaimsList,
   userGet,
-  getclaimId,
+  userlist,
 };
 export default apiServices;

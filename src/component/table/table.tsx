@@ -31,7 +31,7 @@ export default function UserListItem() {
           </TableRow>
         </TableHead>
         <TableBody>
-        {true ? 
+        {userLoader ? 
         <TableRow sx={{}}>
 <CircularIndeterminate/>
         </TableRow>:
@@ -44,7 +44,7 @@ export default function UserListItem() {
           <Avatar alt="Remy Sharp" src={userData?.avatar_url} />
           </TableCell>
           <TableCell align="right">{userData?.login}</TableCell>
-          <TableCell align="right">{userData?.location}</TableCell>
+          <TableCell align="right">{userData?.location ?userData?.location :"A/N"}</TableCell>
           <TableCell align="right">{userData?.followers}</TableCell>
           <TableCell align="right">{userData?.following}</TableCell>
         </TableRow>

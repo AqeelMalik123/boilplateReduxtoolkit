@@ -7,10 +7,10 @@ const initialState = {
   getclaimDataId: [],modalToggle:false,userLoader:false,userData:[]
 };
 
-export const getClaimId: any = createAsyncThunk(
-  'getClaimId',
+export const userlist: any = createAsyncThunk(
+  'userlist',
   async (data, thunkAPI) => {
-    const res = await apiServices.getclaimId();
+    const res = await apiServices.userlist();
 
     console.log(res, 'res');
 
@@ -45,8 +45,8 @@ export const userGet: any = createAsyncThunk(
     }
   },
 );
-const claimSlice = createSlice({
-  name: 'Claim Slice',
+const userSlice = createSlice({
+  name: 'User Slice',
   initialState: initialState,
   reducers: {
     toggleEditClaim: (state: any, { payload }) => {
@@ -69,18 +69,18 @@ state.modalToggle=payload
     [userGet.rejected]: (state: any) => {
       state.userLoader = false;
     },
-    [getClaimId.pending]: (state: any) => {
+    [userlist.pending]: (state: any) => {
       state.getClaimLoading = true;
     },
-    [getClaimId.fulfilled]: (state: any, { payload }: any) => {
+    [userlist.fulfilled]: (state: any, { payload }: any) => {
       state.getClaimLoading = false;
       state.getclaimDataId = payload;
       console.log(payload, 'payload');
     },
-    [getClaimId.rejected]: (state: any) => {
+    [userlist.rejected]: (state: any) => {
       state.getClaimLoading = false;
     },
   },
 });
-export const {modalFuc}:any=claimSlice.actions
-export const claimReducer = claimSlice.reducer;
+export const {modalFuc}:any=userSlice.actions
+export const userReducer = userSlice.reducer;

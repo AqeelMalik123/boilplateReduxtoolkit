@@ -7,34 +7,75 @@ import ListItemAvatar from '@mui/material/ListItemAvatar';
 import Avatar from '@mui/material/Avatar';
 import Typography from '@mui/material/Typography';
 import { useDispatch, useSelector } from '../../store';
-import { modalFuc, userGet } from '../../slices/claims';
+import { modalFuc, userGet } from '../../slices/users';
 import { Box, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, TextField } from '@mui/material';
 
 export default function AlignItemsList() {
   const dispatch=useDispatch()
     const {getclaimDataId}=useSelector((state)=>state.claims)
-    console.log(getclaimDataId,"getclaimDataId")
-    const data=getclaimDataId.slice(1,10)
-    const [query,setQuery]=React.useState('')
+    const [query, setQuery] = React.useState<string>('');
+    const [searchTimeout, setSearchTimeout] = React.useState<NodeJS.Timeout | null>(null);
+
+    const handleSearchChange = (value: string) => {
+      setQuery(value);
+  
+      // Clear previous timeout
+      if (searchTimeout) {
+        clearTimeout(searchTimeout);
+      }
+  
+      // Set new timeout
+      setSearchTimeout(
+        setTimeout(() => {
+          // Perform search action after 1 second of inactivity
+          console.log("Performing search...");
+          // Add your search action here
+        }, 1000)
+      );
+    };
+  
+    // // Function to debounce search
+    // const debounce = (func: Function, delay: number) => {
+    //   let timeoutId: NodeJS.Timeout;
+    //   return (...args: any[]) => {
+    //     clearTimeout(timeoutId);
+    //     timeoutId = setTimeout(() => {
+    //       func(...args);
+    //     }, delay);
+    //   };
+    // };
+  
+    // // Function to handle search with debounce
+    // const delayedSearch = debounce((searchQuery: string) => {
+    //   setQuery(searchQuery);
+    // }, 1000);
+  
+    // Filter data based on the query
+    const filteredData = getclaimDataId?.filter((item:any) => item?.login?.toLowerCase().includes(query?.toLowerCase())).slice(0, 10);
+  
   return (
     <>
     <Box mt={2}>
-    <Box> <TextField fullWidth />
+    <Box sx={{width:"100%",}}>    
+    <TextField fullWidth
+            value={query}
+            onChange={(e) => handleSearchChange(e.target.value)}
+          />
     </Box>
     <TableContainer component={Paper}>
-    <Table sx={{ width:"50%"}} aria-label="simple table">
+    <Table sx={{ width:"50%",whiteSpace:"wrap"}} aria-label="simple table">
       <TableHead>
         <TableRow>
           <TableCell>Profile</TableCell>
           <TableCell align="right">Name</TableCell>
-          <TableCell align="right">Location</TableCell>
+          <TableCell align="right">Github Profile</TableCell>
           {/* <TableCell align="right">Following</TableCell>
           <TableCell align="right">Location</TableCell> */}
          
         </TableRow>
       </TableHead>
-      <TableBody>
-      {data?.map((item:any)=>{
+      <TableBody sx={{whiteSpace:"wrap"}}>
+      {filteredData?.map((item:any)=>{
         return(<>
             <TableRow
           //   key={row.name}
