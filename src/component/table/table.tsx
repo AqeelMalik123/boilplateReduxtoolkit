@@ -16,17 +16,25 @@ import CircularIndeterminate from '../circularProgress/circleProgress';
 
 export default function UserListItem() {
     const {userData,userLoader}=useSelector((state)=>state.claims)
-    
+    const column=[
+      "Profile",
+      "Name","Location","followers","following"
+    ]
   return (
     <TableContainer component={Paper}>
       <Table sx={{ }} aria-label="simple table">
         <TableHead>
           <TableRow>
-            <TableCell>Profile</TableCell>
+            {column?.map(((item)=>{
+              return(<>
+              <TableCell>{item}</TableCell>
+              </>)
+            }))}
+            {/* <TableCell>Profile</TableCell>
             <TableCell align="right">Name</TableCell>
             <TableCell align="right">Location</TableCell>
-            <TableCell align="right">Following</TableCell>
-            <TableCell align="right">Location</TableCell>
+            <TableCell align="right">followers</TableCell>
+            <TableCell align="right">following</TableCell> */}
            
           </TableRow>
         </TableHead>
@@ -37,8 +45,8 @@ export default function UserListItem() {
         </TableRow>:
         <>
         <TableRow
-        //   key={row.name}
-          sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+          key={userData.id}
+          sx={{ '&:last-child td, &:last-child th': { border: 0 },  backgroundColor:"lightgrey" }}
         >
           <TableCell component="th" scope="row">
           <Avatar alt="Remy Sharp" src={userData?.avatar_url} />

@@ -1,27 +1,24 @@
 import React, { useEffect } from 'react'
 import AlignItemsList from '../../component/listItem/listitem'
 import { useDispatch } from '../../store'
-import {  userGet, userlist } from '../../slices/users'
-import FormDialog from '../../component/modal/modal'
-import BasicTable from '../../component/table/table'
+import {   userlist } from '../../slices/users'
+
 import { Box } from '@mui/material'
-// import BasicTable from '../../component/table/table'
+import UserDialog from '../../component/modal/modal'
+
 
 export default function UserList() {
     const dispatch=useDispatch()
     useEffect(() => {
       dispatch(userlist())
     }, [])
-    // useEffect(() => {
-    //   dispatch(userGet("mojombo"))
-    // }, [])ddsdsdsdasdasdasdassdasdsadasdasd
-    // fsdfhsdfhsbdfsd
+    
   return (
     <div style={{width:"100%",display:"flex",justifyContent:"center"}}>
       <Box sx={{display:"flex",justifyContent:"center",}}>
         <AlignItemsList/></Box>
-        {/* <BasicTable/> */}
-        <FormDialog/>
+       
+        <UserDialog/>
     </div>
   )
 }

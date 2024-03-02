@@ -13,7 +13,7 @@ import UserListItem from '../table/table';
 // import { modalFuc } from '../../slices/claims';
 // import { modalFuc } from '../../slices/claims';
 
-export default function FormDialog() {
+export default function UserDialog() {
   // const [open, setOpen] = React.useState(false);
   const {modalToggle,userData}=useSelector((state)=>state.claims)
 
