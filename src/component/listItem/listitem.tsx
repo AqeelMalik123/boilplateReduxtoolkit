@@ -5,10 +5,11 @@ import Avatar from '@mui/material/Avatar';
 import { useDispatch, useSelector } from '../../store';
 import { modalFuc, userGet } from '../../slices/users';
 import { Box, InputAdornment, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, TextField } from '@mui/material';
+import Search from '../search/search';
 
 export default function AlignItemsList() {
   const dispatch = useDispatch();
-  const { getclaimDataId } = useSelector((state) => state.claims);
+  const { getclaimDataId } = useSelector((state) => state.users);
   const [query, setQuery] = React.useState<string>('');
   const [filteredData, setFilteredData] = React.useState<any[]>([]);
   const [unfilteredData, setUnfilteredData] = React.useState<any[]>([]);
@@ -30,9 +31,8 @@ export default function AlignItemsList() {
     // Set new timeout
     setSearchTimeout(
       setTimeout(() => {
-        // Perform search action after 1 second of inactivity
-        console.log("Performing search...");
-        // Filter data based on the query
+     
+      
         const filtered = unfilteredData.filter((item: any) =>
           item?.login?.toLowerCase().includes(value?.toLowerCase())
         ).slice(0, 10);
@@ -46,7 +46,7 @@ export default function AlignItemsList() {
     <>
       <Box mt={2}>
         <Box sx={{ width: "100%" }}>
-          <TextField fullWidth
+          {/* <TextField fullWidth
           placeholder='search by Name'
             value={query}
             InputProps={{
@@ -57,11 +57,12 @@ export default function AlignItemsList() {
               ),
             }}
             onChange={(e) => handleSearchChange(e.target.value)}
-          />
+          /> */}
+          <Search query={query} handleSearchChange={handleSearchChange}/>
         </Box>
         <TableContainer component={Paper}>
-          <Table sx={{ width: "50%", whiteSpace: "wrap" }} aria-label="simple table">
-            <TableHead>
+          <Table sx={{ width: "100%", whiteSpace: "wrap" }} aria-label="simple table">
+            <TableHead sx={{backgroundColor:"#DCE5F2"}}>
               <TableRow>
                 <TableCell>Profile</TableCell>
                 <TableCell align="right">Name</TableCell>
@@ -69,7 +70,9 @@ export default function AlignItemsList() {
               </TableRow>
             </TableHead>
             <TableBody sx={{ whiteSpace: "wrap" }}>
-              {(query.length === 0 ? unfilteredData : filteredData)?.map((item: any) => {
+              
+              {(query.length === 0 ? unfilteredData  : filteredData)?.map((item: any) => {
+                
                 return (
                   <TableRow
                     sx={{ '&:last-child td, &:last-child th': { border: 0 },'&:hover':{
@@ -90,7 +93,7 @@ export default function AlignItemsList() {
                     <TableCell align="right">{item?.url}</TableCell>
                   </TableRow>
                 );
-              })}
+              }) }
             </TableBody>
           </Table>
         </TableContainer>

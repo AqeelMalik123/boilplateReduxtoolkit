@@ -15,7 +15,7 @@ import CircularIndeterminate from '../circularProgress/circleProgress';
 
 
 export default function UserListItem() {
-    const {userData,userLoader}=useSelector((state)=>state.claims)
+    const {userData,userLoader}=useSelector((state)=>state.users)
     const column=[
       "Profile",
       "Name","Location","followers","following"
@@ -23,7 +23,7 @@ export default function UserListItem() {
   return (
     <TableContainer component={Paper}>
       <Table sx={{ }} aria-label="simple table">
-        <TableHead>
+        <TableHead sx={{backgroundColor:"#DCE5F2"}}>
           <TableRow>
             {column?.map(((item)=>{
               return(<>

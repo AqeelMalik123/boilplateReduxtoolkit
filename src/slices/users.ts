@@ -3,7 +3,7 @@ import apiServices from '../services/requestHandler';
 const initialState = {
   loading: false,
   getClaimsListData: [],
-  getClaimLoading: false,
+  getuserLoading: false,
   getclaimDataId: [],modalToggle:false,userLoader:false,userData:[]
 };
 
@@ -70,15 +70,15 @@ state.modalToggle=payload
       state.userLoader = false;
     },
     [userlist.pending]: (state: any) => {
-      state.getClaimLoading = true;
+      state.getuserLoading = true;
     },
     [userlist.fulfilled]: (state: any, { payload }: any) => {
-      state.getClaimLoading = false;
+      state.getuserLoading = false;
       state.getclaimDataId = payload;
       console.log(payload, 'payload');
     },
     [userlist.rejected]: (state: any) => {
-      state.getClaimLoading = false;
+      state.getuserLoading = false;
     },
   },
 });

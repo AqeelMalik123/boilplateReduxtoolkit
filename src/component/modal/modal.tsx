@@ -15,7 +15,7 @@ import UserListItem from '../table/table';
 
 export default function UserDialog() {
   // const [open, setOpen] = React.useState(false);
-  const {modalToggle,userData}=useSelector((state)=>state.claims)
+  const {modalToggle,userData}=useSelector((state)=>state.users)
 
 const dispatch=useDispatch()
   const handleClickOpen = () => {
