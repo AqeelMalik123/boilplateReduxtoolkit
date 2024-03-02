@@ -30,11 +30,7 @@ export default function UserListItem() {
               <TableCell>{item}</TableCell>
               </>)
             }))}
-            {/* <TableCell>Profile</TableCell>
-            <TableCell align="right">Name</TableCell>
-            <TableCell align="right">Location</TableCell>
-            <TableCell align="right">followers</TableCell>
-            <TableCell align="right">following</TableCell> */}
+           
            
           </TableRow>
         </TableHead>

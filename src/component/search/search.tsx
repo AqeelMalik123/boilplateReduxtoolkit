@@ -4,6 +4,9 @@ import React from 'react'
 export default function Search({handleSearchChange,query}:any) {
   return (
     <TextField fullWidth
+    style={{
+      background:"white"
+    }}
           placeholder='search by Name'
             value={query}
             InputProps={{

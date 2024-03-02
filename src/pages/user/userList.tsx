@@ -3,7 +3,7 @@ import AlignItemsList from '../../component/listItem/listitem'
 import { useDispatch, useSelector } from '../../store'
 import {   userlist } from '../../slices/users'
 
-import { Box } from '@mui/material'
+import { Box, Typography } from '@mui/material'
 import UserDialog from '../../component/modal/modal'
 import CircularIndeterminate from '../../component/circularProgress/circleProgress'
 
@@ -16,9 +16,9 @@ export default function UserList() {
     }, [])
     
   return (
-    <div style={{width:"100%",display:"flex",justifyContent:"center"}}>
-      <Box sx={{display:"flex",justifyContent:"center",}}>
-    
+    <div style={{display:"flex",justifyContent:"center",padding:"15px 0px 0px 0px",backgroundColor:"#eefcfc"}}>
+      <Box sx={{width:"40%"}}>
+   
         <AlignItemsList/></Box>
        
         <UserDialog/>

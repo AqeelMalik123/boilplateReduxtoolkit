@@ -4,7 +4,7 @@ import Avatar from '@mui/material/Avatar';
 
 import { useDispatch, useSelector } from '../../store';
 import { modalFuc, userGet } from '../../slices/users';
-import { Box, InputAdornment, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, TextField } from '@mui/material';
+import { Box, InputAdornment, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, TextField, Typography } from '@mui/material';
 import Search from '../search/search';
 
 export default function AlignItemsList() {
@@ -58,10 +58,15 @@ export default function AlignItemsList() {
             }}
             onChange={(e) => handleSearchChange(e.target.value)}
           /> */}
+           <Box sx={{...borderstyle}}>
+      <Typography>
+        User List
+      </Typography>
+    </Box>
           <Search query={query} handleSearchChange={handleSearchChange}/>
         </Box>
-        <TableContainer component={Paper}>
-          <Table sx={{ width: "100%", whiteSpace: "wrap" }} aria-label="simple table">
+        <TableContainer sx={{width: "100%",}} component={Paper}>
+          <Table sx={{ width: "100%", whiteSpace: "wrap",}} aria-label="simple table">
             <TableHead sx={{backgroundColor:"#DCE5F2"}}>
               <TableRow>
                 <TableCell>Profile</TableCell>
@@ -87,10 +92,14 @@ export default function AlignItemsList() {
                       dispatch(userGet(item?.login));
                       dispatch(modalFuc(true));
                     }}>
-                      <Avatar alt="Remy Sharp" src={item?.avatar_url} />
+                      <Avatar alt="userImage" style={{width:"45px",height:"40px"}} src={item?.avatar_url} />
                     </TableCell>
                     <TableCell align="right">{item?.login}</TableCell>
-                    <TableCell align="right">{item?.url}</TableCell>
+                    <TableCell align="right">
+                    <a href={item?.html_url} target='blank' style={{textDecoration:"none",color: "inherit"}}>Profile Link</a>
+                    
+                    </TableCell>
+                    
                   </TableRow>
                 );
               }) }
@@ -104,3 +113,7 @@ export default function AlignItemsList() {
 
 
 
+const borderstyle={
+  border:"1px solid rgba(224, 224, 224, 1)",display:"flex",borderBottom:"none",borderRadius:"4px",
+  padding:"12px",backgroundColor:"#DCE5F2"
+}
