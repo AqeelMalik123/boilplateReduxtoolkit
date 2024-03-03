@@ -1,6 +1,7 @@
 import * as React from 'react';
 
 import Avatar from '@mui/material/Avatar';
+// import { FaIconName } from 'react-icons/fa';
 
 import { useDispatch, useSelector } from '../../store';
 import { modalFuc, userGet } from '../../slices/users';
@@ -41,7 +42,11 @@ export default function AlignItemsList() {
       }, 1000)
     );
   };
-
+const handleDelete=(id:any)=>{
+  const filtered=unfilteredData.filter((item)=>item.id !==id)
+  console.log(filtered,"Delete")
+  setUnfilteredData(filtered)
+}
   return (
     <>
       <Box mt={2}>
@@ -76,7 +81,7 @@ export default function AlignItemsList() {
             </TableHead>
             <TableBody sx={{ whiteSpace: "wrap" }}>
               
-              {(query.length === 0 ? unfilteredData  : filteredData)?.map((item: any) => {
+              {(query.length === 0 ? unfilteredData  : filteredData)?.map((item: any,index:any) => {
                 
                 return (
                   <TableRow
@@ -98,6 +103,13 @@ export default function AlignItemsList() {
                     <TableCell align="right">
                     <a href={item?.html_url} target='blank' style={{textDecoration:"none",color: "inherit"}}>Profile Link</a>
                     
+
+                    </TableCell>
+                    <TableCell>
+                      <button onClick={()=>{
+            
+            handleDelete(item?.id)
+                      }}>delete</button>
                     </TableCell>
                     
                   </TableRow>
@@ -115,5 +127,5 @@ export default function AlignItemsList() {
 
 const borderstyle={
   border:"1px solid rgba(224, 224, 224, 1)",display:"flex",borderBottom:"none",borderRadius:"4px",
-  padding:"12px",backgroundColor:"#DCE5F2"
+  padding:"15px",backgroundColor:"#DCE5F2"
 }
