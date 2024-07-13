@@ -1,6 +1,8 @@
 // import logo from './logo.svg';
-import './App.css';
-import CreateForm from './component/Form/createForm';
+import { Route, Router, Routes } from "react-router-dom";
+import "./App.css";
+import CreateForm from "./component/Form/createForm";
+import UserLogin from "./pages/login/login";
 // import Products from './component/Products';
 
 // import Nabar from './component/Navbar';
@@ -10,13 +12,6 @@ import CreateForm from './component/Form/createForm';
 function App() {
   return (
     <div className="App">
-      {/* <Nabar/> */}
-      {/* <BasicTable/> */}
-      {/* <Basic/> */}
-      
-    {/* <MyForm/> */}
-    {/* <Products/> */}
-    <CreateForm/>
     </div>
   );
 }

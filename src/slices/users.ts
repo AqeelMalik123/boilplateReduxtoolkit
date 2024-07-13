@@ -26,10 +26,10 @@ export const userlist: any = createAsyncThunk(
     }
   },
 );
-export const userGet: any = createAsyncThunk(
-  'userGet',
+export const userLogin: any = createAsyncThunk(
+  'userLogin',
   async (data, thunkAPI) => {
-    const res = await apiServices.userGet(data);
+    const res = await apiServices.userLogin(data);
 
     console.log(res, 'res');
 
@@ -40,7 +40,7 @@ export const userGet: any = createAsyncThunk(
     } catch (error) {
       const err: any = thunkAPI.rejectWithValue(error);
       if (err?.payload?.status !== 200) {
-        // SnackbarUtils.error(err?.payload?.data?.message, false);
+        
       }
     }
   },
@@ -58,15 +58,15 @@ state.modalToggle=payload
   },
   extraReducers: {
    
-    [userGet.pending]: (state: any) => {
+    [userLogin.pending]: (state: any) => {
       state.userLoader = true;
     },
-    [userGet.fulfilled]: (state: any, { payload }: any) => {
+    [userLogin.fulfilled]: (state: any, { payload }: any) => {
       state.userLoader = false;
       state.userData = payload;
       console.log(payload, 'payload');
     },
-    [userGet.rejected]: (state: any) => {
+    [userLogin.rejected]: (state: any) => {
       state.userLoader = false;
     },
     [userlist.pending]: (state: any) => {

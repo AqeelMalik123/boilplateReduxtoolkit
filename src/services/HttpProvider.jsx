@@ -1,5 +1,5 @@
 import axios from 'axios';
-export const BASEURL = "https://api.github.com";
+export const BASEURL = "https://diyainteractive1.pythonanywhere.com/api/v1";
 
 // to access token
 export const getToken = () =>
@@ -40,6 +40,9 @@ export async function request({ method, url, data, headers }) {
     response = await promise;
   } catch (error) {
     if (error.response) {
+      console.error('Error:', error.response.data);
+      console.error('Status:', error.response.status);
+      console.error('Headers:', error.response.headers);
     } else {
     }
     throw error.response;
@@ -79,28 +82,10 @@ export async function get(url, params, featureAndAction, config) {
   return request({ method: 'get', url, data: { featureAndAction }, ...config });
 }
 
-export async function del(url, params, config) {
-  return request({ method: 'delete', url, data: { params }, ...config });
-}
 
 export async function post(url, data, featureAndAction, config) {
+  console.log(" url, data, featureAndAction ",url, data, featureAndAction);
   return request({ method: 'post', url, data, ...config });
 }
 
-export async function put(url, data, config) {
-  return newRequest({ method: 'put', url, data, ...config });
-}
-export async function patch(url, data, config) {
-  return newRequest({ method: 'patch', url, data, ...config });
-}
-export const independentRequest = async (url, method, data) => {
-  const promise = axios[method](url, data);
-  let response;
-  try {
-    response = await promise;
-  } catch (error) {
-    throw error.response;
-  }
-  const payload = response;
-  return payload;
-};
+
